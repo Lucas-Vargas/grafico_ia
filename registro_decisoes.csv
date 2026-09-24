@@ -1,0 +1,7 @@
+transformacao,coluna_afetada,motivo,impacto,risco
+Leitura TSV sem interpretação de aspas,label e message,Preservar cada linha canônica; evitar reconstruir o CSV fragmentado,Leitura: 5572 -> 5574 linhas; 2 colunas; original intacto,Mudança futura de formato; comparação linha a linha valida esta leitura
+Deduplicação inicial,label e message,Evitar peso adicional de cópias exatas,403 linhas removidas; 5574 -> 5171; 0 colunas removidas,Altera frequências; mensagens semelhantes ainda podem existir
+Normalização de espaços,message,Reduzir variações de formatação preservando palavras,407 mensagens alteradas; 5171 linhas antes e depois,Perda de sinais de estilo; pode revelar novas duplicatas
+Reparo de cinco caracteres C1,message,Corrigir pontuação inspecionada sem recodificar todo o texto,35 mensagens e 50 caracteres; 0 linhas removidas,Interpretação indevida de caractere; mapa limitado aos casos inspecionados
+Deduplicação após normalização,label e message,Retirar cópias reveladas pela normalização,12 linhas removidas; 5171 -> 5159; classes: {'spam': 12},Nova alteração das proporções; remoção limitada a pares exatamente iguais
+Codificação binária fixa,label,Representar duas classes com um mapa fixo,5159 valores em 1 coluna; 0 linhas removidas,Categoria desconhecida virar nulo; validação interrompe o processo
